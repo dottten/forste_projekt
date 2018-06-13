@@ -75,14 +75,14 @@ def dataLoad(filename,temprange,bacteria,growth):
                 count = 0;
                 
                 if (row[0] > temprange[1]):
-                    errorstring = ''.join((errorstring,'Temperature is over {:d} degrees in line {:d}. '.format(temprange[1],lineno)));
+                    errorstring = ''.join((errorstring,'Temperature is over {:.2f} degrees in line {:d}. '.format(temprange[1],lineno)));
                 if (row[0] < temprange[0]):
-                    errorstring = ''.join((errorstring,'Temperature is under {:d} degrees in line {:d}. '.format(temprange[0],lineno)));
+                    errorstring = ''.join((errorstring,'Temperature is under {:.2f} degrees in line {:d}. '.format(temprange[0],lineno)));
                     
                 if (row[1] < growth[0]):
-                    errorstring = ''.join((errorstring,'Growth-rate is lower than {:d} in line {:d}. '.format(growth[0],lineno)));
+                    errorstring = ''.join((errorstring,'Growth-rate is lower than {:.2f} in line {:d}. '.format(growth[0],lineno)));
                 if (row[1] > growth[1]):
-                    errorstring = ''.join((errorstring,'Growth-rate is larger than {:d} in line {:d}. '.format(growth[1],lineno)));
+                    errorstring = ''.join((errorstring,'Growth-rate is larger than {:.2f} in line {:d}. '.format(growth[1],lineno)));
                     
                 if (row[2] < 1) or (row[2] > 4):
                     errorstring = ''.join((errorstring,'Bacteria not defined in line {:d}. '.format(lineno)));
