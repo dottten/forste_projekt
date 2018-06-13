@@ -29,6 +29,9 @@ def numberOfBacteria(data):
     plt.xlabel("Bacterial Serial Number")
     plt.ylabel("Bacterial count")
     
+    #Plot title
+    plt.title("Number of Bacteria")
+    
     #Følgende to linjer ænder aksernes intervaller til 'hele' spring.
     plt.xticks(np.arange(min(unique), max(unique)+1, 1.0))
     plt.yticks(np.arange(min(counts), max(counts)+1, 1.0))

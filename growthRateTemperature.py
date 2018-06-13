@@ -9,6 +9,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def growthRateTemperature(data):
 
     #Plot til 'Growth rate by temperature'. Skaber et plot over de 4 forskellige bakterietypers
@@ -104,6 +105,9 @@ def growthRateTemperature(data):
     plt.plot(x3, y3, label="3. Listeria")
     plt.plot(x4, y4, label="4. Brochothrix thermosphacta")
     
+    #Plot title
+    plt.title("Growth Rate by Temperature")
+    
     #Placeringen af 'legend' i plottet
     plt.legend(loc="upper left")
    
@@ -113,4 +117,3 @@ def growthRateTemperature(data):
     
     #Viser grafen. 
     plt.show()    
-    
