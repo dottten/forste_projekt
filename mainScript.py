@@ -104,38 +104,40 @@ while True:
                      
                     
                     while True:
+                        
+                        ##  Naming of options in menu
                         if chosen_bacteria[0] != 0:
-                            Bacteria_1 = 'Remove bacteria 1'
+                            Bacteria_1 = 'Remove Salmonella enterica'
                         
                         else:
-                            Bacteria_1 = 'Add bacteria 1'
+                            Bacteria_1 = 'Add Salmonella enterica'
                             
                             
                             
                         if chosen_bacteria[1] != 0:
-                            Bacteria_2 = 'Remove bacteria 2'
+                            Bacteria_2 = 'Remove Bacillus cereus'
                         
                         else:
-                            Bacteria_2 = 'Add bacteria 2'
+                            Bacteria_2 = 'Add Bacillus cereus'
                             
                             
                             
                         if chosen_bacteria[2] != 0:
-                            Bacteria_3 = 'Remove bacteria 3'
+                            Bacteria_3 = 'Remove Listeria'
                         
                         else:
-                            Bacteria_3 = 'Add bacteria 3'
+                            Bacteria_3 = 'Add Listeria'
                             
                             
                             
                         if chosen_bacteria[3] != 0:
-                            Bacteria_4 = 'Remove bacteria 4'
+                            Bacteria_4 = 'Remove Brochothrix thermosphacta'
                         
                         else:
-                            Bacteria_4 = 'Add bacteria 4'
+                            Bacteria_4 = 'Add Brochothrix thermosphacta'
                             
                             
-                            
+                        ## Menu 
                         Bacteria_choice = userInputMenu(np.array([Bacteria_1, Bacteria_2, Bacteria_3, Bacteria_4, 'Go back']),'Please select an option: ');
                         
                         ##  Remove/add bacteria 1
