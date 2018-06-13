@@ -36,7 +36,8 @@ while True:
     ## Hovedmenu
     choice = userInputMenu(np.array(['Read Data','Filter Data','Show Statistics','Create Plots','Quit']),'Please select an option');
     
-    #### Read data option
+    
+    ####   Read data option  ####
     if (choice == 1):
         
         #Liste over tilgængelige filer i mappen
@@ -71,39 +72,137 @@ while True:
             except UnboundLocalError:
                 print('Invalid file. Please try again');
     
-    #### Filtrer data option
+    ####   Filter data option   ####
     if (choice == 2):
         while True:
             filter_choice = userInputMenu(np.array(['Edit temperature range','Specify relevant bacteria','Edit Growth-rate-range','Reset','Cancel']),'Please select an option: ');
             
+            
+            ##  Go back
             if filter_choice == 5:
                 print();
                 print('Going back to main menu.');
                 print();
                 break;
-            
+                
+                
             try: 
                 isinstance(data_loaded,float);
                 
-                if filter_choice == 4:
-                    regular_temp_range = np.array([10,60]);
-                    chosen_bacteria = np.arange(1,5);
-                    growth_range = np.array([0,1000000000]);
-                    data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
+                
+                ##  Temperature range
+                if filter_choice == 1:
                     
+                    t_lower_limit = userInputNumber('Please input the lower limit of the temperature: ',np.array([10,False]));
+                    t_upper_limit = userInputNumber('Please input the upper limit of the temperature: ',np.array([t_lower_limit,60]));
+                    regular_temp_range = np.array([t_lower_limit,t_upper_limit]);
+                    data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
+                    break;
+                
+                ##  Selceting bacteriatypes
+                if filter_choice == 2:
+                    
+                    Bacteria_type = userInputNumber('Please input the lower limit of the growth-rate: ',np.array([1e-10,False]));
+                    Bacteria_type = userInputNumber('Please input the upper limit of the growth-rate: ',np.array([g_lower_limit,False]));
+                    growth_range = np.array([g_lower_limit,g_upper_limit]);
+                    data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
+                    break;
+                
+                
+                ##  Growth rate range
                 if filter_choice == 3:
                     
                     g_lower_limit = userInputNumber('Please input the lower limit of the growth-rate: ',np.array([1e-10,False]));
                     g_upper_limit = userInputNumber('Please input the upper limit of the growth-rate: ',np.array([g_lower_limit,False]));
                     growth_range = np.array([g_lower_limit,g_upper_limit]);
                     data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
+                    break;
                     
+                    
+                ##  Reset all ranges    
+                if filter_choice == 4:
+                    regular_temp_range = np.array([10,60]);
+                    chosen_bacteria = np.arange(1,5);
+                    growth_range = np.array([0,1000000000]);
+                    data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
+                    break;
+                    
+ 
             except NameError:
                 print();
                 print('Please read data-file first.')
                 print();
                 break;
+      
         
+    ####    Statistics   ####
+    if (choice == 3):
+        while True:  
+            statistic_choice = userInputMenu(np.array(['Mean temperature','Mean growth rate','Standard deviation of temperature', 'Standard deviation of growth rate', 'Number of valid rows', 'Mean growth rate for temperatures under 20 degrees', 'Mean growth rate for temperatures over 50 degrees', 'Cancel']),'Please select an option: ');
+            
+            
+            
+            ##  Go back
+            if statistic_choice == 8:
+                print();
+                print('Going back to main menu.');
+                print();
+                break;
+                
+            
+            try: 
+                isinstance(data_loaded,float);
+                
+                
+                ##  Mean temperature
+                if statistic_choice == 1:
+                    print(dataStatistics(data_matrix, "Mean Temperature"))
+                    
+                
+                
+                ##  Mean growth rate
+                if statistic_choice == 2:
+                    print(dataStatistics(data_matrix, "Mean Growth rate"))
+                    
+                
+                
+                ##  Standard deviation of temperature
+                if statistic_choice == 3:
+                    print(dataStatistics(data_matrix, "Std Temperature"))
+                    
+                    
+                    
+                ##  Standard deviation of growth rate    
+                if statistic_choice == 4:
+                    print(dataStatistics(data_matrix, "Std Growth rate"))
+                    
+                    
+                    
+                ##  Number of valid rows   
+                if statistic_choice == 5:
+                    print(dataStatistics(data_matrix, "Rows"))
+                    
+            
+            
+                ##  Mean growth rate for cold temperatures    
+                if statistic_choice == 6:
+                    print(dataStatistics(data_matrix, "Mean Cold Growth rate"))
+                    
+                    
+                    
+                ##  Mean growth rate for hot temperatures    
+                if statistic_choice == 7:
+                    print(dataStatistics(data_matrix, "Mean Hot Growth rate"))
+                    
+                    
+ 
+            except NameError:
+                print();
+                print('Please read data-file first.')
+                print();
+                break;
+                
+                
     
     if (choice == 5):
         print();

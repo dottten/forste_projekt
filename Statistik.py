@@ -20,29 +20,29 @@ def dataStatistics(data, statistic):
     # Middelværdi for temperaturen
     if statistic == "Mean Temperature":
         MnTmp = np.mean(data[:,0])
-        result = ("The {:s} is {:.3f} degrees".format(statistic, MnTmp))
-        print("You have chosen to see the average of the valid temperatures")
+        result = ("The mean temperature is {:.3f} degrees".format(statistic, MnTmp))
+        print("You have chosen to see the average of the temperatures")
         
         
     # Middelværdi for vækstraten
     elif statistic == "Mean Growth rate":
         MnGrw = np.mean(data[:,1])
-        result = ("The {:s} is {:.3f}".format(statistic, MnGrw))
-        print("You have chosen to see the average of the valid growth rates")
+        result = ("The mean growth rate is {:.3f}".format(statistic, MnGrw))
+        print("You have chosen to see the average of the growth rates")
         
         
     # Standard afvigelsen af temperaturen
     elif statistic == "Std Temperature":
         StdTmp = np.std(data[:,0])
-        result = ("The {:s} is {:.3f}".format(statistic, StdTmp))
-        print("You have chosen to see the standard deviation of the valid temperatures")
+        result = ("The standard deviation of the temperature is {:.3f}".format(statistic, StdTmp))
+        print("You have chosen to see the standard deviation of the temperature")
         
         
     # Standard afvigelsen af vækstraten
     elif statistic == "Std Growth rate":
         StdGrw = np.std(data[:,1])
-        result = ("The {:s} is {:.3f}".format(statistic, StdGrw))
-        print("You have chosen to see the standard deviation of the valid growth rates")
+        result = ("The standard deviation of the growth rate is {:.3f}".format(statistic, StdGrw))
+        print("You have chosen to see the standard deviation of the growth rate")
         
         
     # Antallet af rækker
