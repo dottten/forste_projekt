@@ -75,6 +75,6 @@ def userInputNumber(showstring,limit):
                         break;
                         
             except ValueError:
-                print("Not valid number. Please try again.")
+                print("Not a valid number. Please try again.")
     
     return choice
