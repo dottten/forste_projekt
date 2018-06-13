@@ -101,12 +101,95 @@ while True:
                 
                 ##  Selceting bacteriatypes
                 if filter_choice == 2:
+                     
                     
-                    Bacteria_type = userInputNumber('Please input the lower limit of the growth-rate: ',np.array([1e-10,False]));
-                    Bacteria_type = userInputNumber('Please input the upper limit of the growth-rate: ',np.array([g_lower_limit,False]));
-                    growth_range = np.array([g_lower_limit,g_upper_limit]);
-                    data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
-                    break;
+                    while True:
+                        if chosen_bacteria[0] != 0:
+                            Bacteria_1 = 'Remove bacteria 1'
+                        
+                        else:
+                            Bacteria_1 = 'Add bacteria 1'
+                            
+                            
+                            
+                        if chosen_bacteria[1] != 0:
+                            Bacteria_2 = 'Remove bacteria 2'
+                        
+                        else:
+                            Bacteria_2 = 'Add bacteria 2'
+                            
+                            
+                            
+                        if chosen_bacteria[2] != 0:
+                            Bacteria_3 = 'Remove bacteria 3'
+                        
+                        else:
+                            Bacteria_3 = 'Add bacteria 3'
+                            
+                            
+                            
+                        if chosen_bacteria[3] != 0:
+                            Bacteria_4 = 'Remove bacteria 4'
+                        
+                        else:
+                            Bacteria_4 = 'Add bacteria 4'
+                            
+                            
+                            
+                        Bacteria_choice = userInputMenu(np.array([Bacteria_1, Bacteria_2, Bacteria_3, Bacteria_4, 'Go back']),'Please select an option: ');
+                        
+                        ##  Remove/add bacteria 1
+                        if Bacteria_choice == 1:
+                            if chosen_bacteria[0] != 0:
+                                chosen_bacteria[0] = 0;
+                                
+                            
+                            else:
+                                chosen_bacteria[0] = 1;
+                        
+                        
+                        ##  Remove/add bacteria 2
+                        if Bacteria_choice == 2:
+                            if chosen_bacteria[1] != 0:
+                                chosen_bacteria[1] = 0;
+                                
+                            
+                            else:
+                                chosen_bacteria[1] = 2;
+                            
+                            
+                            
+                        ##  Remove/add bacteria 3
+                        if Bacteria_choice == 3:
+                            if chosen_bacteria[2] != 0:
+                                chosen_bacteria[2] = 0;
+                                
+                            
+                            else:
+                                chosen_bacteria[2] = 3;
+                            
+                            
+                            
+                        ##  Remove/add bacteria 4
+                        if Bacteria_choice == 4:
+                            if chosen_bacteria[3] != 0:
+                                chosen_bacteria[3] = 0;
+                                
+                            
+                            else:
+                                chosen_bacteria[3] = 4;
+                            
+                            
+                        
+                        
+                        ##  Go back
+                        if Bacteria_choice == 5:
+                            data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
+                            print();
+                            print('Going back.');
+                            print();
+                            break;
+                
                 
                 
                 ##  Growth rate range
@@ -201,7 +284,14 @@ while True:
                 print('Please read data-file first.')
                 print();
                 break;
-                
+   
+    
+    
+    ####    Plots   ####
+    if (choice == 4):
+        while True:  
+            plot_choice = userInputMenu(np.array(['Mean temperature','Mean growth rate','Standard deviation of temperature', 'Standard deviation of growth rate', 'Number of valid rows', 'Mean growth rate for temperatures under 20 degrees', 'Mean growth rate for temperatures over 50 degrees', 'Cancel']),'Please select an option: ');
+                        
                 
     
     if (choice == 5):

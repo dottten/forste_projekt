@@ -15,12 +15,12 @@ import numpy as np
 # første kolonner til udregning 
 # Statistic er den ønskede statistik, der er 7 muligheder
 
-data = np.array([[12, 4, 5], [15, 2, 9], [18, 2, 8], [20, 4, 10], [22, 3, 12]])
+
 def dataStatistics(data, statistic):
     # Middelværdi for temperaturen
     if statistic == "Mean Temperature":
         MnTmp = np.mean(data[:,0])
-        result = ("The mean temperature is {:.3f} degrees".format(statistic, MnTmp))
+        result = ("The mean temperature is {1:.3f} degrees".format(statistic, MnTmp))
         print("You have chosen to see the average of the temperatures")
         
         
@@ -71,4 +71,3 @@ def dataStatistics(data, statistic):
         result = ("Error, not a valid option. Please try again")
    
     return result
-print(dataStatistics(data, "Mean Temperature"))
