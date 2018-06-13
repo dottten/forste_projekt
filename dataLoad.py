@@ -115,6 +115,10 @@ def dataLoad(filename,temprange,bacteria,growth):
                     
                 else:
                     del row;
-                    
+    
+    print();
+    print('Data has been succesfully loaded.');
+    print();
+    print('The following lines of the data-file has not been included:');        
     print(errorstring);
     return data

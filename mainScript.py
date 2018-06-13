@@ -293,7 +293,12 @@ while True:
     if (choice == 4):
         while True:  
             plot_choice = userInputMenu(np.array(['Mean temperature','Mean growth rate','Standard deviation of temperature', 'Standard deviation of growth rate', 'Number of valid rows', 'Mean growth rate for temperatures under 20 degrees', 'Mean growth rate for temperatures over 50 degrees', 'Cancel']),'Please select an option: ');
-                        
+            
+            if plot_choice == 8:
+                print();
+                print('Going back to main menu.');
+                print();
+                break;
                 
     
     if (choice == 5):
