@@ -6,12 +6,15 @@ Created on Tue Jun 12 11:53:39 2018
 """
 
 import numpy as np;
-import pandas as pd;
 
-#filename er en string med filnavnet på filen der skal behandles
-#temprange er et NumPy array med den laveste og højeste temp i den rækkefølge
-#bacteria er et NumPy array med de relevante bakterier (1,2,3,4)
-#growth er et NumPy array med et grow-rate-interval fra mindst til lavest
+#dataLoad er en funktion, som henter en txt-fil, hvorpå data er indskrevet med mellemrum og linebreak.
+    #Den konverterer hver gyldig (eller relevant) linje til en array og stacker dem til en matrix.
+    #outputtet er en N x 3 matrix, hvor N er antallet af gyldige/relevante linjer.
+#input:    
+    #filename er en string med filnavnet på filen der skal behandles.
+    #temprange er et NumPy array med den laveste og højeste temp i den rækkefølge.
+    #bacteria er et NumPy array med de relevante bakterier (1,2,3,4).
+    #growth er et NumPy array med et grow-rate-interval fra mindst til højest.
 def dataLoad(filename,temprange,bacteria,growth):
     
     filein = open(filename,"r");
