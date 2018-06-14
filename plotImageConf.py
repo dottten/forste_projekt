@@ -4,20 +4,19 @@ Created on Thu Jun 14 11:03:35 2018
 
 @author: Ditlev
 """
-from userInput import userInputMenu;
-from userInput import userInputNumber;
-import numpy as np;
-import os;
-from dataLoad import dataLoad;
-from Statistik import dataStatistics;
-
-regular_temp_range = np.array([10,60]);
-chosen_bacteria = np.arange(1,5);
-growth_range = np.array([0,1000000000]);
-
 def plotImageConf():
-    
+    from userInput import userInputMenu;
+    from userInput import userInputNumber;
+    import numpy as np;
+    import os;
+    from dataLoad import dataLoad;
+    from Statistik import dataStatistics;
     import time;
+    
+    regular_temp_range = np.array([10,60]);
+    chosen_bacteria = np.arange(1,5);
+    growth_range = np.array([0,1000000000]);
+
     
     
     while True:
