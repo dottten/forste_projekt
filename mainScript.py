@@ -330,43 +330,43 @@ while True:
                 
                 ##  Mean temperature
                 if statistic_choice == 1:
-                    print(dataStatistics(data_matrix, "Mean Temperature"))
+                    print(dataStatistics(data_matrix, "Mean Temperature",regular_temp_range))
                     
                 
                 
                 ##  Mean growth rate
                 if statistic_choice == 2:
-                    print(dataStatistics(data_matrix, "Mean Growth rate"))
+                    print(dataStatistics(data_matrix, "Mean Growth rate",regular_temp_range))
                     
                 
                 
                 ##  Standard deviation of temperature
                 if statistic_choice == 3:
-                    print(dataStatistics(data_matrix, "Std Temperature"))
+                    print(dataStatistics(data_matrix, "Std Temperature",regular_temp_range))
                     
                     
                     
                 ##  Standard deviation of growth rate    
                 if statistic_choice == 4:
-                    print(dataStatistics(data_matrix, "Std Growth rate"))
+                    print(dataStatistics(data_matrix, "Std Growth rate",regular_temp_range))
                     
                     
                     
                 ##  Number of valid rows   
                 if statistic_choice == 5:
-                    print(dataStatistics(data_matrix, "Rows"))
+                    print(dataStatistics(data_matrix, "Rows",regular_temp_range))
                     
             
             
                 ##  Mean growth rate for cold temperatures    
                 if statistic_choice == 6:
-                    print(dataStatistics(data_matrix, "Mean Cold Growth rate"))
+                    print(dataStatistics(data_matrix, "Mean Cold Growth rate",regular_temp_range))
                     
                     
                     
                 ##  Mean growth rate for hot temperatures    
                 if statistic_choice == 7:
-                    print(dataStatistics(data_matrix, "Mean Hot Growth rate"))
+                    print(dataStatistics(data_matrix, "Mean Hot Growth rate",regular_temp_range))
                     
                     
             # Fejlkode

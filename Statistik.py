@@ -14,9 +14,10 @@ import numpy as np
 # Tredje kolonne er bakterietypen, men der bruges kun de to 
 # første kolonner til udregning 
 # Statistic er den ønskede statistik, der er 7 muligheder
+# regular_temp_range er indført for at filtrere data.
 
 
-def dataStatistics(data, statistic):
+def dataStatistics(data, statistic,regular_temp_range):
     # Middelværdi for temperaturen
     if statistic == "Mean Temperature":
         MnTmp = np.mean(data[:,0])
@@ -59,18 +60,28 @@ def dataStatistics(data, statistic):
         
     # Middelværdi for vækstraten for temperaturer under 20 grader
     elif statistic == "Mean Cold Growth rate":
-        Cold = np.mean(data[:,1][data[:,0] < 20])
-        result = ("The {:s} is {:.3f}.".format(statistic, Cold)) 
-        print();
-        print("You have chosen to see the average growth rate for temperatures under 20 degrees.")
+        if (regular_temp_range[0] >= 20):
+            print();
+            print('The selected temperature range does not include temperatures below 20 degrees.');
+            result = 'No result.'
+        else:
+            Cold = np.mean(data[:,1][data[:,0] < 20])
+            result = ("The {:s} is {:.3f}.".format(statistic, Cold)) 
+            print();
+            print("You have chosen to see the average growth rate for temperatures under 20 degrees.")
         
     
     # Middelværdi for vækstraten for temperaturer over 50 grader
     elif statistic == "Mean Hot Growth rate":
-        Hot = np.mean(data[:,1][data[:,0] > 50])
-        result = ("The {:s} is {:.3f}.".format(statistic, Hot))
-        print();
-        print("You have chosen to see the average growth rate for temperatures over 50 degrees.")
+        if (regular_temp_range[1] <= 50):
+            print();
+            print('The selected temperature range does not include temperatures above 50 degrees.');
+            result = 'No result.'
+        else:
+            Hot = np.mean(data[:,1][data[:,0] > 50])
+            result = ("The {:s} is {:.3f}.".format(statistic, Hot))
+            print();
+            print("You have chosen to see the average growth rate for temperatures over 50 degrees.")
         
         
     # Hvis der er en fejl
