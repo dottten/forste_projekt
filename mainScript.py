@@ -21,7 +21,6 @@ from growthRateTemperature import growthRateTemperature;
 from numberOfBacteria import numberOfBacteria;
 
 from Statistik import dataStatistics;
-from initializeScript import initializeScript;
 
 from dataLoad import dataLoad;
 
@@ -43,7 +42,7 @@ while True:
     if (choice == 1):
         
         print();
-        print();
+
         
         #Liste over tilgængelige filer i mappen
         file_list = np.asarray(os.listdir());
@@ -53,50 +52,99 @@ while True:
         while True:
             file_choice = userInputMenu(complete_list,'Select the data-file you want to use');
             
+            
             if file_choice == np.size(complete_list):
                 print();
                 print('Going back to main menu.');
-                print();
                 
                 break;
                 
-            #Success
-            try:
-                data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
-                print();
-                print('Data has now been read. Aforementioned faulty lines are not included.')
                 
-                data_loaded = file_choice;
-                break;
+            ##  Reset af data inden ny fil oploades, hvis der allerede er loaded en fil
+            if ('data_loaded' in locals()) and ((regular_temp_range[0] != 10) or (regular_temp_range[1] != 60) or (chosen_bacteria[0] != 1) or (chosen_bacteria[1] != 2) or (chosen_bacteria[2] != 3) or (chosen_bacteria[3] != 4) or (growth_range[0] != 0) or  (growth_range[1] != 1000000000)): 
+                print();
+                    
+                while True:
+                    reset_choice = userInputMenu(np.array(['Yes', 'No']), 'Do you want to reset your filters before uploading file');
+                        
+                    if reset_choice == 1:
+                        regular_temp_range = np.array([10,60]);
+                        chosen_bacteria = np.arange(1,5);
+                        growth_range = np.array([0,1000000000]);
+                        data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
+                        print();
+                        break;
+                            
+                    if reset_choice == 2:
+                        print();
+                        break;
+                        
+                # Den nye fil med værdier bliver brugt
+                try:
+                    data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
+                
+                    
+                    print();
+                    print('Data has now been read. Aforementioned faulty lines are not included.')
+                    
+                    data_loaded = file_choice;
+                    break;
                
-            # Fejlkoder
-            except IndexError:
-                print();
-                print('Invalid file. Please try again');
-            except PermissionError:
-                print();
-                print('Invalid file. Please try again');
-            except UnboundLocalError:
-                print();
-                print('Invalid file. Please try again');
-            except IsADirectoryError:
-                print();
-                print('Invalid file. Please try again');
+                # Fejlkoder
+                except IndexError:
+                    print();
+                    print('Invalid file. Please try again');
+                except PermissionError:
+                    print();
+                    print('Invalid file. Please try again');
+                except UnboundLocalError:
+                    print();
+                    print('Invalid file. Please make sure data is within the given ranges');
+                except IsADirectoryError:
+                    print();
+                    print('Invalid file. Please try again');
+                    
+                    
+                    
+            # Første fil kan bruges
+            else:
+                try:
+                    data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
+                
+                    
+                    print();
+                    print('Data has now been read. Aforementioned faulty lines are not included.')
+                    
+                    data_loaded = file_choice;
+                    break;
+               
+                # Fejlkoder
+                except IndexError:
+                    print();
+                    print('Invalid file. Please try again');
+                except PermissionError:
+                    print();
+                    print('Invalid file. Please try again');
+                except UnboundLocalError:
+                    print();
+                    print('Invalid file. Please try again');
+                except IsADirectoryError:
+                    print();
+                    print('Invalid file. Please try again');
     
     
-    ####   Filter data option   ####
+    ####   Filtrér data option   ####
     if (choice == 2):
         print();
         
         while True:
-            filter_choice = userInputMenu(np.array(['Edit temperature range','Specify relevant bacteria','Edit Growth-rate-range','Reset','Go back']),'Please select an option: ');
+            filter_choice = userInputMenu(np.array(['Edit temperature range','Specify relevant bacteria','Edit Growth-rate-range','Reset','Go back']),'Please select an option');
             
             
             ##  Go back
             if filter_choice == 5:
                 print();
                 print('Going back to main menu.');
-                print();
                 break;
                 
                 
@@ -107,8 +155,8 @@ while True:
                 ##  Temperature range
                 if filter_choice == 1:
                     
-                    t_lower_limit = userInputNumber('Please input the lower limit of the temperature: ',np.array([10,False]));
-                    t_upper_limit = userInputNumber('Please input the upper limit of the temperature: ',np.array([t_lower_limit,60]));
+                    t_lower_limit = userInputNumber('Please input the lower limit of the temperature',np.array([10,False]));
+                    t_upper_limit = userInputNumber('Please input the upper limit of the temperature',np.array([t_lower_limit,60]));
                     regular_temp_range = np.array([t_lower_limit,t_upper_limit]);
                     data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
                     print();
@@ -156,7 +204,7 @@ while True:
                        
                         
                         ## Menu 
-                        Bacteria_choice = userInputMenu(np.array([Bacteria_1, Bacteria_2, Bacteria_3, Bacteria_4, 'Go back']),'Please select an option: ');
+                        Bacteria_choice = userInputMenu(np.array([Bacteria_1, Bacteria_2, Bacteria_3, Bacteria_4, 'Go back']),'Please select an option');
                         
                         ##  Remove/add bacteria 1
                         if Bacteria_choice == 1:
@@ -222,8 +270,8 @@ while True:
                 ##  Growth rate range
                 if filter_choice == 3:
                     
-                    g_lower_limit = userInputNumber('Please input the lower limit of the growth-rate: ',np.array([1e-10,False]));
-                    g_upper_limit = userInputNumber('Please input the upper limit of the growth-rate: ',np.array([g_lower_limit,False]));
+                    g_lower_limit = userInputNumber('Please input the lower limit of the growth-rate',np.array([1e-10,False]));
+                    g_upper_limit = userInputNumber('Please input the upper limit of the growth-rate',np.array([g_lower_limit,False]));
                     growth_range = np.array([g_lower_limit,g_upper_limit]);
                     data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
                     print();
@@ -240,7 +288,7 @@ while True:
  
             except NameError:
                 print();
-                print('Please read data-file first.')
+                print('Please read a valid data-file first. Optionally set new ranges for the current data file.')
                 print();
                 break;
       
@@ -250,7 +298,7 @@ while True:
         while True:
             print();
             
-            statistic_choice = userInputMenu(np.array(['Mean temperature','Mean growth rate','Standard deviation of temperature', 'Standard deviation of growth rate', 'Number of valid rows', 'Mean growth rate for temperatures under 20 degrees', 'Mean growth rate for temperatures over 50 degrees', 'Go back']),'Please select an option: ');
+            statistic_choice = userInputMenu(np.array(['Mean temperature','Mean growth rate','Standard deviation of temperature', 'Standard deviation of growth rate', 'Number of valid rows', 'Mean growth rate for temperatures under 20 degrees', 'Mean growth rate for temperatures over 50 degrees', 'Go back']),'Please select an option');
             
             
             
@@ -258,7 +306,6 @@ while True:
             if statistic_choice == 8:
                 print();
                 print('Going back to main menu.');
-                print();
                 break;
                 
             
@@ -310,7 +357,7 @@ while True:
  
             except NameError:
                 print();
-                print('Please read data-file first.')
+                print('Please read a valid data-file first. Optionally set new ranges for the current data file.')
                 print();
                 break;
    
@@ -321,29 +368,44 @@ while True:
         while True: 
             print();
             
+            
             # Plot menu
-            plot_choice = userInputMenu(np.array(['Create a bar chart of the different number of bacteria and how often they occur.','Create a plot over the differnet bacterias growth rate as a function of temperature', 'Create both plots.', 'Go back']),'Please select an option: ');
+            plot_choice = userInputMenu(np.array(['Create a bar chart of the different number of bacteria and how often they occur.','Create a plot over the differnet bacterias growth rate as a function of temperature', 'Create both plots.', 'Go back']),'Please select an option');
             
-            # Bar chart
-            if plot_choice == 1:
-                numberOfBacteria(data_matrix)
-                print();
-                
-            # Growth rate
-            if plot_choice == 2:
-                growthRateTemperature(data_matrix)
-                print();
             
-            # Both plots
-            if plot_choice == 3:
-                numberOfBacteria(data_matrix)
-                growthRateTemperature(data_matrix)
-                print();
-        
             # Go back
             if plot_choice == 4:
                 print();
                 print('Going back to main menu.');
+                print();
+                break;
+         
+            
+            # Sikrer der er en fil uploaded
+            try: 
+                isinstance(data_loaded,float);
+             
+                
+                # Bar chart
+                if plot_choice == 1:
+                    numberOfBacteria(data_matrix)
+                    print();
+                
+                # Growth rate
+                if plot_choice == 2:
+                    growthRateTemperature(data_matrix)
+                    print();
+            
+                # Both plots
+                if plot_choice == 3:
+                    numberOfBacteria(data_matrix)
+                    growthRateTemperature(data_matrix)
+                    print();
+        
+        
+            except NameError:
+                print();
+                print('Please read a valid data-file first. Optionally set new ranges for the current data file.')
                 print();
                 break;
                 
