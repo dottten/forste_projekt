@@ -107,6 +107,9 @@ while True:
                 except IsADirectoryError:
                     print();
                     print('Invalid file. Please try again');
+                except UnicodeDecodeError:
+                    print();
+                    print('Invalid file. Please try again');
                     
                     
                     
@@ -135,7 +138,9 @@ while True:
                 except IsADirectoryError:
                     print();
                     print('Invalid file. Please try again');
-    
+                except UnicodeDecodeError:
+                    print();
+                    print('Invalid file. Please try again');
     
     ####   Filtrér data option   ####
     if (choice == 2):
@@ -379,5 +384,9 @@ while True:
     if (choice == 5):
         print();
         print('Program shutting down.');
+        try:
+            del data_loaded;
+        except NameError:
+            del choice;
         break;
     
