@@ -24,6 +24,8 @@ from Statistik import dataStatistics;
 
 from dataLoad import dataLoad;
 
+from plotImageConf import plotImageConf;
+
 
 #global variables
 regular_temp_range = np.array([10,60]);
@@ -261,8 +263,7 @@ while True:
                             
                             else:
                                 print();
-                                print('Please select at least one becteriatype');
-                                print();
+                                plotImageConf();
 
                 
                 
@@ -417,3 +418,4 @@ while True:
         print();
         print('Program shutting down.');
         break;
+    
