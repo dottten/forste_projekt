@@ -2,7 +2,7 @@
 """
 Created on Wed Jun 13 11:18:22 2018
 
-@author: ander
+@author: Anders
 """
 
 import math
