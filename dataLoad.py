@@ -17,12 +17,19 @@ import numpy as np;
     #growth er et NumPy array med et grow-rate-interval fra mindst til højest.
 def dataLoad(filename,temprange,bacteria,growth):
     
+    #brug kun relevante bakterier
+    bacteria = bacteria[bacteria != 0];
+    
+    #indlæs filen og lav string
     filein = open(filename,"r");
     lines = filein.readlines();
     txt = "".join(lines);
+    
+    #til fejlstreng
     lineno = 0;
     errorstring = '';
     
+    #behandling af data-fil ('txt').
     for i in range(len(txt)):
         
         
@@ -38,15 +45,16 @@ def dataLoad(filename,temprange,bacteria,growth):
             #skab string hvis den ikke eksisterer
             except NameError:
                 number = txt[i];
-            
+        
+        #hvis det i'de element ikke er et tal
         except ValueError:
             
-            #tilføj også punktummet
+            #tilføj også punktummet til tallet
             if txt[i] == '.':
                 
                 number = ''.join((number,txt[i]));
                 
-            #tilføj også minusset
+            #tilføj også minusset til tallet
             elif txt[i] == '-':
                 
                 number = txt[i];
@@ -71,7 +79,7 @@ def dataLoad(filename,temprange,bacteria,growth):
                 
                 del number;
                 
-                #konstruer errorstring
+                #konstruer specificeret errorstring
                 count = 0;
                 
                 if (row[0] > temprange[1]):
