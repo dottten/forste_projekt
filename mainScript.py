@@ -2,7 +2,7 @@
 """
 Created on Wed Jun 13 12:11:44 2018
 
-@author: loved
+@author: Anders, Ditlev & Lasse
 """
 
 #import packages
@@ -33,6 +33,8 @@ from plotImageConf import plotImageConf;
 regular_temp_range = np.array([10,60]);
 chosen_bacteria = np.arange(1,5);
 growth_range = np.array([0,1000000000]);
+bacterias = np.array(['Salmonella enterica','Bacillus cereus','Listeria','Brochothrix thermosphacta']);
+
 
 while True:
     
@@ -95,21 +97,10 @@ while True:
                     break;
                
                 # Fejlkoder
-                except IndexError:
+                except:
                     print();
                     print('Invalid file. Please try again');
-                except PermissionError:
                     print();
-                    print('Invalid file. Please try again');
-                except UnboundLocalError:
-                    print();
-                    print('Invalid file. Please make sure data is within the given ranges');
-                except IsADirectoryError:
-                    print();
-                    print('Invalid file. Please try again');
-                except UnicodeDecodeError:
-                    print();
-                    print('Invalid file. Please try again');
                     
                     
                     
@@ -147,16 +138,30 @@ while True:
         print();
         
         while True:
-            filter_choice = userInputMenu(np.array(['Edit temperature range','Specify relevant bacteria','Edit Growth-rate-range','Reset','Go back']),'Please select an option');
-            
+            filter_choice = userInputMenu(np.array(['Edit temperature range','Specify relevant bacteria','Edit Growth-rate-range','Reset','Show Filters','Go back']),'Please select an option');
+                    
             
             ##  Go back
-            if filter_choice == 5:
+            if filter_choice == 6:
                 print();
                 print('Going back to main menu.');
                 break;
+            
+            ## See filters
+            if filter_choice == 5:
+                print();
+                print('The temperature range is from {:.3f} to {:.3f}.'.format(regular_temp_range[0],regular_temp_range[1]));
                 
-            # Sikrer der er uploaded data   
+                for i in range(np.size(chosen_bacteria)):
+                    if np.any(i+1 == chosen_bacteria):
+                        print('{:s} has been chosen.'.format(bacterias[i]));
+                
+                if growth_range[1] == 1000000000:
+                    print('The growth-rate range is all positive growth-rate values.');
+                else:
+                    print('The growth-rate range is from {:.3f} to {:.3f}.'.format(growth_range[0],growth_range[1]));
+                print();
+                
             try: 
                 isinstance(data_loaded,float);
                 

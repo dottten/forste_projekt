@@ -2,7 +2,7 @@
 """
 Created on Wed Jun 13 11:42:18 2018
 
-@author: loved
+@author: Ditlev
 """
 
 def initializeScript():
