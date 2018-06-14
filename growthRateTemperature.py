@@ -86,18 +86,6 @@ def growthRateTemperature(data):
     x3 = sorted(x3)
     x4 = sorted(x4)
     
-    #En debug til at se, om listerne bleve sorteret, skal fjernes i det endelige program.
-    #print(x1)
-    #print(y1)
-    
-    #print(x2)
-    #print(y2)
-
-    #print(x3)
-    #print(y3)
-
-    #print(x4)
-    #print(y4)
     
     #Følgende skal plotte de sorterede datapunkter
     
@@ -106,6 +94,11 @@ def growthRateTemperature(data):
     plt.plot(x2, y2, label="2. Bacillus cereus", linewidth = 3.5)
     plt.plot(x3, y3, label="3. Listeria", linewidth = 3.5)
     plt.plot(x4, y4, label="4. Brochothrix thermosphacta", linewidth = 3.5)
+    
+    plt.plot(x1, y1, "b*")
+    plt.plot(x2, y2, "y*")
+    plt.plot(x3, y3, "g*")
+    plt.plot(x4, y4, "r*")
     
     #Plot title
     plt.title("Growth Rate by Temperature")
