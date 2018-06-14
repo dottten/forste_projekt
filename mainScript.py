@@ -20,6 +20,8 @@ from growthRateTemperature import growthRateTemperature;
 
 from numberOfBacteria import numberOfBacteria;
 
+from dataPlot import dataPlot
+
 from Statistik import dataStatistics;
 
 from dataLoad import dataLoad;
@@ -60,7 +62,7 @@ while True:
                 break;
                 
                 
-            ##  Reset af data inden ny fil oploades, hvis der allerede er loaded en fil
+            ##  Reset af data inden ny fil oploades, hvis der allerede er loaded en fil og det ikke er standard range
             if ('data_loaded' in locals()) and ((regular_temp_range[0] != 10) or (regular_temp_range[1] != 60) or (chosen_bacteria[0] != 1) or (chosen_bacteria[1] != 2) or (chosen_bacteria[2] != 3) or (chosen_bacteria[3] != 4) or (growth_range[0] != 0) or  (growth_range[1] != 1000000000)): 
                 print();
                     
@@ -79,7 +81,7 @@ while True:
                         print();
                         break;
                         
-                # Den nye fil med værdier bliver brugt
+                # Den nye fil med 'andre' værdier bliver brugt
                 try:
                     data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
                 
@@ -147,7 +149,7 @@ while True:
                 print('Going back to main menu.');
                 break;
                 
-                
+            # Sikrer der er uploaded data   
             try: 
                 isinstance(data_loaded,float);
                 
@@ -259,6 +261,7 @@ while True:
                                 print();
                                 break;
                             
+                            # Der skal være valgt mindst én bakterietype
                             else:
                                 print();
                                 print('Please select at least one becteriatype');
@@ -285,7 +288,7 @@ while True:
                     data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
                     print();
                     
- 
+            # Fejlkode
             except NameError:
                 print();
                 print('Please read a valid data-file first. Optionally set new ranges for the current data file.')
@@ -308,7 +311,7 @@ while True:
                 print('Going back to main menu.');
                 break;
                 
-            
+            # Sikrer der er en gyldig fil uploaded
             try: 
                 isinstance(data_loaded,float);
                 
@@ -354,7 +357,7 @@ while True:
                     print(dataStatistics(data_matrix, "Mean Hot Growth rate"))
                     
                     
- 
+            # Fejlkode
             except NameError:
                 print();
                 print('Please read a valid data-file first. Optionally set new ranges for the current data file.')
@@ -365,49 +368,8 @@ while True:
     
     ####    Plots   ####
     if (choice == 4):
-        while True: 
-            print();
-            
-            
-            # Plot menu
-            plot_choice = userInputMenu(np.array(['Create a bar chart of the different number of bacteria and how often they occur.','Create a plot over the differnet bacterias growth rate as a function of temperature', 'Create both plots.', 'Go back']),'Please select an option');
-            
-            
-            # Go back
-            if plot_choice == 4:
-                print();
-                print('Going back to main menu.');
-                print();
-                break;
-         
-            
-            # Sikrer der er en fil uploaded
-            try: 
-                isinstance(data_loaded,float);
-             
-                
-                # Bar chart
-                if plot_choice == 1:
-                    numberOfBacteria(data_matrix)
-                    print();
-                
-                # Growth rate
-                if plot_choice == 2:
-                    growthRateTemperature(data_matrix)
-                    print();
-            
-                # Both plots
-                if plot_choice == 3:
-                    numberOfBacteria(data_matrix)
-                    growthRateTemperature(data_matrix)
-                    print();
         
-        
-            except NameError:
-                print();
-                print('Please read a valid data-file first. Optionally set new ranges for the current data file.')
-                print();
-                break;
+            dataPlot(data_matrix, data_loaded)
                 
     
     
