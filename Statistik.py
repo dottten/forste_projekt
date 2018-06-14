@@ -20,7 +20,7 @@ def dataStatistics(data, statistic):
     # Middelværdi for temperaturen
     if statistic == "Mean Temperature":
         MnTmp = np.mean(data[:,0])
-        result = ("The mean temperature is {1:.3f} degrees".format(MnTmp))
+        result = ("The mean temperature is {:.3f} degrees".format(MnTmp))
         print("You have chosen to see the average of the temperatures")
         
         
