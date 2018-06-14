@@ -10,8 +10,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def growthRateTemperature(data):
 
+def growthRateTemperature(data):
+    
+    #Anders:
     #Plot til 'Growth rate by temperature'. Skaber et plot over de 4 forskellige bakterietypers
     #'Growth Rate' of tilhørende temperatur, sorteret efter en stigende temperatur. 
     #Input skal være en N x 3 matrix, med de maks 4 forskellige bakterietyper der er opgivet i opgaven.
@@ -100,20 +102,26 @@ def growthRateTemperature(data):
     #Følgende skal plotte de sorterede datapunkter
     
     #De forskellige plots med labels
-    plt.plot(x1, y1, label="1. Salmonella enterica")
-    plt.plot(x2, y2, label="2. Bacillus cereus")
-    plt.plot(x3, y3, label="3. Listeria")
-    plt.plot(x4, y4, label="4. Brochothrix thermosphacta")
+    plt.plot(x1, y1, label="1. Salmonella enterica", linewidth = 3.5)
+    plt.plot(x2, y2, label="2. Bacillus cereus", linewidth = 3.5)
+    plt.plot(x3, y3, label="3. Listeria", linewidth = 3.5)
+    plt.plot(x4, y4, label="4. Brochothrix thermosphacta", linewidth = 3.5)
     
     #Plot title
     plt.title("Growth Rate by Temperature")
     
-    #Placeringen af 'legend' i plottet
-    plt.legend(loc="upper left")
+    #Placeringen af 'legend' i plottet 
+    plt.legend(loc="upper left", bbox_to_anchor=(1.02, 1), labelspacing = 3.95, prop = {'size': 12}, fancybox = True)
    
+    #Akselabels
+    plt.xlabel('Temperature')
+    plt.ylabel('Growth Rate')
+    
+    
     #Limits på plottet
     plt.xlim([10, 60])
     plt.ylim(ymin=0)
     
     #Viser grafen. 
     plt.show()    
+    
