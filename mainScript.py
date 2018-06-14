@@ -33,12 +33,17 @@ growth_range = np.array([0,1000000000]);
 
 while True:
     
+    print();
+    
     ## Hovedmenu
     choice = userInputMenu(np.array(['Read Data','Filter Data','Show Statistics','Create Plots','Quit']),'Please select an option');
     
     
     ####   Read data option  ####
     if (choice == 1):
+        
+        print();
+        print();
         
         #Liste over tilgængelige filer i mappen
         file_list = np.asarray(os.listdir());
@@ -60,22 +65,31 @@ while True:
                 data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
                 print();
                 print('Data has now been read. Aforementioned faulty lines are not included.')
-                print();
                 
                 data_loaded = file_choice;
                 break;
-                
+               
+            # Fejlkoder
             except IndexError:
+                print();
                 print('Invalid file. Please try again');
             except PermissionError:
+                print();
                 print('Invalid file. Please try again');
             except UnboundLocalError:
+                print();
                 print('Invalid file. Please try again');
+            except IsADirectoryError:
+                print();
+                print('Invalid file. Please try again');
+    
     
     ####   Filter data option   ####
     if (choice == 2):
+        print();
+        
         while True:
-            filter_choice = userInputMenu(np.array(['Edit temperature range','Specify relevant bacteria','Edit Growth-rate-range','Reset','Cancel']),'Please select an option: ');
+            filter_choice = userInputMenu(np.array(['Edit temperature range','Specify relevant bacteria','Edit Growth-rate-range','Reset','Go back']),'Please select an option: ');
             
             
             ##  Go back
@@ -97,15 +111,18 @@ while True:
                     t_upper_limit = userInputNumber('Please input the upper limit of the temperature: ',np.array([t_lower_limit,60]));
                     regular_temp_range = np.array([t_lower_limit,t_upper_limit]);
                     data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
-                    break;
+                    print();
+                    
                 
                 ##  Selceting bacteriatypes
                 if filter_choice == 2:
                      
                     
                     while True:
+                        print();
                         
-                        ##  Naming of options in menu
+                        
+                        ##  Naming of variable options in menu
                         if chosen_bacteria[0] != 0:
                             Bacteria_1 = 'Remove Salmonella enterica'
                         
@@ -136,7 +153,8 @@ while True:
                         else:
                             Bacteria_4 = 'Add Brochothrix thermosphacta'
                             
-                            
+                       
+                        
                         ## Menu 
                         Bacteria_choice = userInputMenu(np.array([Bacteria_1, Bacteria_2, Bacteria_3, Bacteria_4, 'Go back']),'Please select an option: ');
                         
@@ -186,11 +204,18 @@ while True:
                         
                         ##  Go back
                         if Bacteria_choice == 5:
-                            data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
-                            print();
-                            print('Going back.');
-                            print();
-                            break;
+                            if (chosen_bacteria[0] + chosen_bacteria[1] + chosen_bacteria[2] + chosen_bacteria[3]) != 0:
+                                data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
+                                print();
+                                print('Going back.');
+                                print();
+                                break;
+                            
+                            else:
+                                print();
+                                print('Please select at least one becteriatype');
+                                print();
+
                 
                 
                 
@@ -201,7 +226,7 @@ while True:
                     g_upper_limit = userInputNumber('Please input the upper limit of the growth-rate: ',np.array([g_lower_limit,False]));
                     growth_range = np.array([g_lower_limit,g_upper_limit]);
                     data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
-                    break;
+                    print();
                     
                     
                 ##  Reset all ranges    
@@ -210,7 +235,7 @@ while True:
                     chosen_bacteria = np.arange(1,5);
                     growth_range = np.array([0,1000000000]);
                     data_matrix = dataLoad(complete_list[int(file_choice) - 1],regular_temp_range,chosen_bacteria,growth_range);
-                    break;
+                    print();
                     
  
             except NameError:
@@ -222,8 +247,10 @@ while True:
         
     ####    Statistics   ####
     if (choice == 3):
-        while True:  
-            statistic_choice = userInputMenu(np.array(['Mean temperature','Mean growth rate','Standard deviation of temperature', 'Standard deviation of growth rate', 'Number of valid rows', 'Mean growth rate for temperatures under 20 degrees', 'Mean growth rate for temperatures over 50 degrees', 'Cancel']),'Please select an option: ');
+        while True:
+            print();
+            
+            statistic_choice = userInputMenu(np.array(['Mean temperature','Mean growth rate','Standard deviation of temperature', 'Standard deviation of growth rate', 'Number of valid rows', 'Mean growth rate for temperatures under 20 degrees', 'Mean growth rate for temperatures over 50 degrees', 'Go back']),'Please select an option: ');
             
             
             
