@@ -99,21 +99,10 @@ def plotImageConf():
                                                 break;
                                                
                                             # Fejlkoder
-                                            except IndexError:
+                                            except:
                                                 print();
                                                 print('Invalid file. Please try again');
-                                            except PermissionError:
                                                 print();
-                                                print('Invalid file. Please try again');
-                                            except UnboundLocalError:
-                                                print();
-                                                print('Invalid file. Please try again');
-                                            except IsADirectoryError:
-                                                print();
-                                                print('Invalid file. Please try again');
-                                            except UnicodeDecodeError:
-                                                print();
-                                                print('Invalid file. Please try again');
                                         
                                         
                                         userInputMenu(np.array(['Yes']),'You have 8 seconds to answer. Are you ready?');

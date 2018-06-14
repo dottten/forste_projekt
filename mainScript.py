@@ -95,21 +95,10 @@ while True:
                     break;
                
                 # Fejlkoder
-                except IndexError:
+                except:
                     print();
                     print('Invalid file. Please try again');
-                except PermissionError:
                     print();
-                    print('Invalid file. Please try again');
-                except UnboundLocalError:
-                    print();
-                    print('Invalid file. Please make sure data is within the given ranges');
-                except IsADirectoryError:
-                    print();
-                    print('Invalid file. Please try again');
-                except UnicodeDecodeError:
-                    print();
-                    print('Invalid file. Please try again');
                     
                     
                     
