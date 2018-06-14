@@ -46,7 +46,6 @@ while True:
     if (choice == 1):
         
         print();
-
         
         #Liste over tilgængelige filer i mappen
         file_list = np.asarray(os.listdir());
@@ -137,7 +136,7 @@ while True:
         
         while True:
             filter_choice = userInputMenu(np.array(['Edit temperature range','Specify relevant bacteria','Edit Growth-rate-range','Reset','Show Filters','Go back']),'Please select an option');
-                    
+            show_filter = False;        
             
             ##  Go back
             if filter_choice == 6:
@@ -159,6 +158,7 @@ while True:
                 else:
                     print('The growth-rate range is from {:.3f} to {:.3f}.'.format(growth_range[0],growth_range[1]));
                 print();
+                show_filter = True;
                 
             try: 
                 isinstance(data_loaded,float);
@@ -298,10 +298,11 @@ while True:
                     
  
             except NameError:
-                print();
-                print('Please read a valid data-file first. Optionally set new ranges for the current data file.')
-                print();
-                break;
+                if show_filter != True:
+                    print();
+                    print('Please read a valid data-file first. Optionally set new ranges for the current data file.')
+                    print();
+                    break;
       
         
     ####    Statistics   ####
