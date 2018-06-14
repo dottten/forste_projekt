@@ -422,5 +422,9 @@ while True:
     if (choice == 5):
         print();
         print('Program shutting down.');
+        try:
+            del data_loaded;
+        except NameError:
+            del choice;
         break;
     
