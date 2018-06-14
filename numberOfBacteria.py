@@ -34,7 +34,7 @@ def numberOfBacteria(data):
     
     #Følgende to linjer ænder aksernes intervaller til 'hele' spring.
     plt.xticks(np.arange(min(unique), max(unique)+1, 1.0))
-    plt.yticks(np.arange(min(counts), max(counts)+1, 1.0))
+    plt.yticks(np.arange(min(counts), max(counts)+1, 2.0))
     
     #Til sidst vises søjle diagrammet. 
     plt.show()

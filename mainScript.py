@@ -318,16 +318,39 @@ while True:
     
     ####    Plots   ####
     if (choice == 4):
-        while True:  
-            plot_choice = userInputMenu(np.array(['Mean temperature','Mean growth rate','Standard deviation of temperature', 'Standard deviation of growth rate', 'Number of valid rows', 'Mean growth rate for temperatures under 20 degrees', 'Mean growth rate for temperatures over 50 degrees', 'Cancel']),'Please select an option: ');
+        while True: 
+            print();
             
-            if plot_choice == 8:
+            # Plot menu
+            plot_choice = userInputMenu(np.array(['Create a bar chart of the different number of bacteria and how often they occur.','Create a plot over the differnet bacterias growth rate as a function of temperature', 'Create both plots.', 'Go back']),'Please select an option: ');
+            
+            # Bar chart
+            if plot_choice == 1:
+                numberOfBacteria(data_matrix)
+                print();
+                
+            # Growth rate
+            if plot_choice == 2:
+                growthRateTemperature(data_matrix)
+                print();
+            
+            # Both plots
+            if plot_choice == 3:
+                numberOfBacteria(data_matrix)
+                growthRateTemperature(data_matrix)
+                print();
+        
+            # Go back
+            if plot_choice == 4:
                 print();
                 print('Going back to main menu.');
                 print();
                 break;
                 
     
+    
+    
+    ####    Quit program   ####
     if (choice == 5):
         print();
         print('Program shutting down.');
